@@ -1,0 +1,23 @@
+﻿@model IEnumerable<WebApplication2.Models.Customer>
+
+@{
+    ViewBag.Title = "title";
+}
+
+<table class="table table-bordered table-hover">
+    <thead>
+    <tr>
+        <th>Customer</th>
+        <th>Membership type</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var customer in Model)
+    {
+        <tr>
+            <td>@Html.ActionLink(customer.Name, "Edit", "Customers", new {@customer.Id}, null)</td>
+            <td>@customer.MembershipType.Name</td>
+        </tr>
+    }
+    </tbody>
+</table>
