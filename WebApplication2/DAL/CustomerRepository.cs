@@ -39,7 +39,7 @@ namespace WebApplication2.DAL
             if (customer.Id == 0)
             {
                 _context.Customers.Add(customer);
-            }
+            }   
             else
             {
                 var customerInDb = _context.Customers.Single(c => c.Id == customer.Id);

@@ -15,6 +15,8 @@ namespace WebApplication2.Migrations
             INSERT INTO [dbo].[AspNetUserRoles] ([UserId], [RoleId]) VALUES (N'9bb7c4de-dd3b-4d16-8774-6a200fe4dbb7', N'468e6624-d4dd-4ef4-939d-9de379f014b3')
 
             ");
+
+            Console.WriteLine("Updated");
         }
 
         public override void Down()

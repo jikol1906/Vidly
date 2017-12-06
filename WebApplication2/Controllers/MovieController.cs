@@ -31,9 +31,18 @@ namespace WebApplication2.Controllers
             var movies = _context.Movies
                 .Include(m => m.Genre)
                 .ToList();
+
+            if (User.IsInRole("CanManageMovies"))
+            {
+                return View("index", movies);
+            }
+            else
+            {
+                return View("ReadOnlyList", movies);
+            }
              
 
-            return View(movies);
+            
         }
 
         // GET: Movie/Details/5

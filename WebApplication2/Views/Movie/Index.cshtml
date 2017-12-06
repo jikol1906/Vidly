@@ -21,7 +21,18 @@
 </table>
 @section scripts
 {
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+  
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.js"></script>
+    
+    
+    <script ></script>
     <script>
+
+        
+
         $(document).ready(function () {
             var table = $("#movies").DataTable({
                 ajax: {
@@ -39,7 +50,7 @@
                         data: "genre.name"
                     },
                     {
-                        data: "id",
+                        data: "movieId",
                         render: function(data) {
                             return "<button class='btn-link js-delete' data-movie-id=" + data + ">Delete</button>";
                         }
