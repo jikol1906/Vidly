@@ -14,6 +14,10 @@ namespace WebApplication2.App_Start
         {
             Mapper.CreateMap<Customer, CustomerDto>();
             Mapper.CreateMap<CustomerDto, Customer>();
+            Mapper.CreateMap<NewRentalDto, Rental>();
+            Mapper.CreateMap<Rental, NewRentalDto>();
+            Mapper.CreateMap<MovieDto, Movie>();
+            Mapper.CreateMap<Movie, MovieDto>();
         }
     }
 }

@@ -7,6 +7,7 @@ using System.Web.Http;
 using AutoMapper;
 using WebApplication2.Dtos;
 using WebApplication2.Models;
+using System.Data.Entity;
 
 namespace WebApplication2.Controllers.Api
 {
@@ -20,9 +21,18 @@ namespace WebApplication2.Controllers.Api
             _context = new ApplicationDbContext();
         }
 
-        public IEnumerable<CustomerDto> GetCustomers()
+        public IHttpActionResult GetCustomers(string query = null)
         {
-            return _context.Customers.ToList().Select(Mapper.Map<Customer,CustomerDto>);
+            var customersQuery = _context.Customers.Include(c => c.MembershipType);
+
+            if (!String.IsNullOrWhiteSpace(query))
+                customersQuery = customersQuery.Where(c => c.Name.Contains(query));
+
+            var customerDtos = customersQuery
+                .ToList()
+                .Select(Mapper.Map<Customer, CustomerDto>);
+
+            return Ok(customerDtos);
         }
 
         public IHttpActionResult GetCustomer(int id)

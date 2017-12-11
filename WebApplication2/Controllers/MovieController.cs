@@ -32,7 +32,7 @@ namespace WebApplication2.Controllers
                 .Include(m => m.Genre)
                 .ToList();
 
-            if (User.IsInRole("CanManageMovies"))
+            if (User.IsInRole(RoleNames.CanManageMovies))
             {
                 return View("index", movies);
             }
@@ -45,7 +45,7 @@ namespace WebApplication2.Controllers
             
         }
 
-        // GET: Movie/Details/5
+        // GET: Movie/Details/
         public ActionResult Details(int id)
         {
 
@@ -127,6 +127,7 @@ namespace WebApplication2.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = RoleNames.CanManageMovies)]
         public ActionResult Save(Movie movie)
         {
 
@@ -144,6 +145,7 @@ namespace WebApplication2.Controllers
             if (movie.MovieId == 0)
             {
                 movie.DateAdded = DateTime.Now;
+                movie.NumberAvailable = movie.NumberInStock;
                 _context.Movies.Add(movie);
             }
             else
@@ -162,6 +164,7 @@ namespace WebApplication2.Controllers
             return RedirectToAction("Index", "Movie");
         }
 
+        [Authorize(Roles = RoleNames.CanManageMovies)]
         public ActionResult Edit(int id)
         {
             var movie = _context.Movies.SingleOrDefault(m => m.MovieId == id);
@@ -177,6 +180,7 @@ namespace WebApplication2.Controllers
             return View("MovieForm", viewModel);
         }
 
+        [Authorize(Roles = RoleNames.CanManageMovies)]
         public ActionResult New()
         {
             var genres = _context.Genres.ToList();
@@ -192,6 +196,7 @@ namespace WebApplication2.Controllers
 
         }
 
+        [Authorize(Roles = RoleNames.CanManageMovies)]  
         public void Delete(int id)
         {
             var movieInDb = _context.Movies.SingleOrDefault(movie => id == movie.MovieId);
