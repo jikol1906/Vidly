@@ -15,7 +15,10 @@ namespace WebApplication2
                         "~/Scripts/jquery.validate*"));
             bundles.Add(new ScriptBundle("~/bundles/typeahead").Include("~/Scripts/typeahead.bundle.js"));
 
-            
+            bundles.Add(new ScriptBundle("~/bundles/toastr").Include("~/Scripts/toastr.js"));
+
+
+
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at https://modernizr.com to pick only the tests you need.
@@ -29,6 +32,7 @@ namespace WebApplication2
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
+                      "~/content/toastr.css",
                       "~/Content/typeahead.css"
                       ));
         }

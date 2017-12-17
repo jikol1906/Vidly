@@ -24,7 +24,6 @@ namespace WebApplication2.Models
         public int NumberInStock { get; set; }
 
         [Display(Name = "Number available")]
-        [Range(1, 20)]
         public int NumberAvailable { get; set; }
 
         public Genre Genre { get; set; }
